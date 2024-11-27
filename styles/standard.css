@@ -23,7 +23,11 @@ header{
     justify-content: flex-start;
     align-items: center;
     background-color: rgb(121, 0, 0);
-    color: white;
+    color: rgb(238, 236, 236);
+}
+
+header h2{
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 header img{
