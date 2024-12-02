@@ -1,7 +1,7 @@
 body{
     font-family: Montserrat;
     font-size: 32px;
-    background-color:rgb(78, 78, 78);
+    background-color:rgb(71, 71, 71)!important;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -12,10 +12,64 @@ main{
     flex: 1;
 }
 
+#content{
+    display: flex; /* Aktiviert das Flexbox-Layout */
+    flex-wrap: wrap; /* Ermöglicht Zeilenumbruch */
+    gap: 16px; /* Abstand zwischen den Pokémon */
+    justify-content: space-evenly; /* Pokémon gleichmäßig verteilen */
+    padding: 16px; /* Innenabstand des Containers */
+}
+
+.main-container{
+    max-width: 200px;
+    height: auto;
+    background-color: rgb(6, 83, 252);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: none;
+    margin: 16px;
+    color: white;
+}
+
+.title{
+    padding-right: 8px;
+    padding-left: 8px;
+    background-color: #09212A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+
+}
+
+.types{
+    height: 40px;
+    background-color: #09212A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.types img{
+    width: 30px;
+    height: auto;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
 h1 {
     position: absolute;
     right: 160px;
 }
+
+h4:first-letter {
+    text-transform: uppercase;
+  }
 
 header{
     min-height: 150px;

@@ -21,3 +21,7 @@
     margin-bottom: 16px;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
+
+h4:first-letter {
+    text-transform: uppercase;
+  }
