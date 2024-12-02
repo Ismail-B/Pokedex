@@ -1,7 +1,7 @@
 body{
     font-family: Montserrat;
     font-size: 32px;
-    background-color:rgb(71, 71, 71)!important;
+    background-color:rgb(83, 84, 84)!important;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,9 @@ body{
 }
 
 main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex: 1;
 }
 
@@ -23,20 +26,27 @@ main{
 .main-container{
     max-width: 200px;
     height: auto;
-    background-color: rgb(6, 83, 252);
     border-radius: 12px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     border: none;
     margin: 16px;
-    color: white;
+    color:  white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all .5s ease-in-out;
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+.main-container:hover{
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .title{
     padding-right: 8px;
     padding-left: 8px;
-    background-color: #09212A;
+    background-color:rgb(121, 0, 0);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +57,7 @@ main{
 
 .types{
     height: 40px;
-    background-color: #09212A;
+    background-color: rgb(49, 49, 49);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,6 +66,7 @@ main{
 }
 
 .types img{
+    filter: drop-shadow(0px 0px 2px);
     width: 30px;
     height: auto;
     margin-right: 8px;
@@ -74,10 +85,20 @@ h4:first-letter {
 header{
     min-height: 150px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     background-color: rgb(121, 0, 0);
     color: rgb(238, 236, 236);
+}
+
+.pkmn-logo{
+    filter: drop-shadow(2px 4px 6px black);
+    width: 300px;
+    height: auto;
+}
+
+header input{
+    margin-right: 16px;
 }
 
 header h2{
@@ -88,6 +109,17 @@ header img{
     width: 70px;
     margin-left: 24px;
     margin-right: 16px;
+}
+
+.headerlogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    margin-bottom: 24px;
+    filter: drop-shadow(2px 4px 4px black);
 }
 
 footer{
