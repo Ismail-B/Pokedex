@@ -1,3 +1,6 @@
+let pokemonSearchList = [];
+
+
 async function fetchData() {
   const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=40");
 
@@ -12,6 +15,7 @@ async function fetchData() {
         if (pokemonResponse.ok) {
           const pokemonData = await pokemonResponse.json();
           pokemonDetails.push(pokemonData);
+          pokemonSearchList.push(pokemonData);
         } else {
           console.error(`Fehler beim Abrufen von ${pokemon.name}`);
         }
@@ -93,4 +97,63 @@ function getTypeColor(type) {
     default:
       return "#FFFFFF";
   }
+}
+
+
+function pokeFilter() {
+    let searchInputRef = document.getElementById('searchInput').value.toLowerCase();
+    let emptyPageRef = document.getElementById('empty-page');
+    let inputMsgRef = document.getElementById('inputMsg'); // Bereich für die Eingabemeldung
+
+    if (searchInputRef.length >= 3) {
+        const searchOutput = filterPokemon(searchInputRef); // Filtere die Pokémon-Liste
+        renderPokemon(searchOutput); // Zeige die gefilterten Pokémon an
+        clearInputMessage(inputMsgRef); // Meldung für <3 Buchstaben löschen
+
+        if (searchOutput.length < 1) {
+            renderEmptyState(emptyPageRef); // Keine Treffer gefunden
+        } else {
+            clearEmptyState(emptyPageRef); // Treffer gefunden, leere die Fehlermeldung
+        }
+    } else {
+        clearEmptyState(emptyPageRef); // Fehlermeldung entfernen
+        showAllPokemon(searchInputRef); // Zeige alle Pokémon oder eine leere Liste
+
+        if (searchInputRef.length > 0) { 
+            showInputMessage(inputMsgRef); // Zeige die "3 Buchstaben"-Meldung 
+        } else {
+            clearInputMessage(inputMsgRef); // Meldung löschen, wenn Eingabe leer ist
+        }
+    }
+}
+
+function filterPokemon(searchInput) {
+    return pokemonSearchList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(searchInput)
+    );
+}
+
+function renderEmptyState(emptyPageRef) {
+    emptyPageRef.innerHTML = `<div class="emptyPage">
+                                <img src="./assets/img/sadPikachu.png" alt="Picture of a sad Pikachu">
+                                <p>We could not find the Pokémon you are searching for</p>
+                              </div>`;
+}
+
+function clearEmptyState(emptyPageRef) {
+    emptyPageRef.innerHTML = ``; // Fehlermeldung löschen
+}
+
+function showAllPokemon(searchInput) {
+    if (searchInput.length < 3) {
+        renderPokemon(pokemonSearchList); // Zeige alle Pokémon an
+    }
+}
+
+function showInputMessage(inputMsgRef) {
+    inputMsgRef.innerHTML = `<p>Please enter at least 3 letters.</p>`;
+}
+
+function clearInputMessage(inputMsgRef) {
+    inputMsgRef.innerHTML = ``;
 }

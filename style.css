@@ -21,3 +21,27 @@
     margin-bottom: 16px;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
+
+.emptyPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyPage p{
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(198, 154, 9);
+    border-radius: 8px;
+    padding-right: 12px;
+    padding-left: 12px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.emptyPage img{
+    margin-left: 250px;
+    width: 300px;
+    height: auto;
+}

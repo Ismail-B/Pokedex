@@ -42,12 +42,14 @@
       </div>
       <div>
         <img src="./assets/img/pokeball-logo.png" alt="Pokeball" />
-        <input type="search" placeholder="Type in Pokemon" />
+        <input oninput="pokeFilter()" id="searchInput" type="search" placeholder="Type in Pokemon" />
       </div>
+      <div id="inputMsg"></div>
     </header>
     <main>
       <div id="content"></div>
       <button type="button" class="btn btn-dark">Load More</button>
+      <div id="empty-page"></div>
     </main>
     <footer>
       <div class="footer">
