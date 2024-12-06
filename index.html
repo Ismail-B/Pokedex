@@ -35,20 +35,24 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body onload="fetchData()">
+  <body onload="init()">
     <header>
       <div class="headerlogo">
         <img class="pkmn-logo" src="./assets/img/pokemon.png" alt="" />
       </div>
-      <div>
+      <div class="inputfield">
         <img src="./assets/img/pokeball-logo.png" alt="Pokeball" />
+        <div>
         <input oninput="pokeFilter()" id="searchInput" type="search" placeholder="Type in Pokemon" />
+        <div id="inputMsg"></div>
       </div>
-      <div id="inputMsg"></div>
+      </div>
     </header>
-    <main>
+    <main>    
+      <div onclick="toggleOverlay(),enableScroll()" id="overlay"></div>
       <div id="content"></div>
-      <button type="button" class="btn btn-dark">Load More</button>
+      <div id="loading-spinner"></div>
+      <button onclick="loadMorePokemon(),showLoadingSpinner()" type="button" id="loadMore" class="btn btn-dark">Load More</button>
       <div id="empty-page"></div>
     </main>
     <footer>
