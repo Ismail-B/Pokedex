@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {object} pokemon 
+ * @param {string} typesHTML 
+ * @param {number} index 
+ */
 function renderPokemonContent(pokemon, typesHTML,index) {
   let charactersRef = document.getElementById("content");
   const type1 = pokemon.types[0].type.name; // Erster Typ des Pokémon
@@ -12,7 +18,7 @@ function renderPokemonContent(pokemon, typesHTML,index) {
   }
 
   charactersRef.innerHTML += `
-    <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(${index})" class="main-container" style="background: ${backgroundColor}">
+    <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(),renderOverlayTemplate(${index}) " class="main-container" style="background: ${backgroundColor}">
       <div class="title">
         <h4>#${pokemon.id}</h4>
         <h4>${pokemon.name}</h4>
@@ -23,7 +29,10 @@ function renderPokemonContent(pokemon, typesHTML,index) {
       </div>
     </div>`;
 }
-
+/**Get empty page HTML
+ * 
+ * @param {string} emptyPageRef 
+ */
 function renderEmptyState(emptyPageRef) {
   emptyPageRef.innerHTML = `<div class="emptyPage">
                               <img src="./assets/img/sadPikachu.png" alt="Picture of a sad Pikachu">
@@ -33,13 +42,14 @@ function renderEmptyState(emptyPageRef) {
 
 function renderOverlayTemplate(index) {
   let overlay = document.getElementById("overlay");
-  let overlayTemplate = overlay;
-  overlayTemplate.innerHTML = ``;
-  pokemonDetails[index];
+ 
+  // pokemonDetails[index];
   
+  console.log("pokemonDetails:");
   
+  console.log(pokemonDetails[index]);
   
-  overlayTemplate.innerHTML = `
+  overlay.innerHTML = `
   <div class="overlay d-flex justify-content-center align-items-center" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1050;">
     <div onclick="stopPropagation(event)" class="card text-center" style="width: 24rem; background-color: white; padding: 20px; border-radius: 10px;">
       
@@ -114,9 +124,9 @@ function spinnerTemplate(spinner) {
 </svg>`;
 }
 
-function createPokemonHTML(pokemon, typesHTML, backgroundColor) {
+function createPokemonHTML(pokemon, typesHTML,i, backgroundColor) {
   return `
-    <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay()" class="main-container" style="background: ${backgroundColor}">
+    <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(), renderOverlayTemplate(${i})" class="main-container" style="background: ${backgroundColor}">
       <div class="title">
         <h4>#${pokemon.id}</h4>
         <h4>${pokemon.name}</h4>
