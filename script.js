@@ -1,20 +1,26 @@
 let pokemonSearchList = [];
 let amount = 20;
-
+const pokemonDetails = [];
+const pokemonData = [];
 // Initialisiert den Ladevorgang
-function init() {
-    fetchData(20);
+async function init() {
+    await fetchData(20);
 }
 
+
 // Lädt Pokémon-Daten von der API
-async function fetchData(amount) {
+async function fetchData() {
+  let spinner = document.getElementById('loading-spinner');
+  spinnerTemplate(spinner)// Spinner HTML einfügen;
+  let button = document.getElementById('loadMore');
+  button.style.display = 'none'; // Button ausblenden
   // Pokémon-Liste abrufen
-  const pokemonListData = await fetchPokemonList(amount);
+  const pokemonListData = await fetchPokemonList(20);
   if (!pokemonListData) {
     return; // Wenn keine Pokémon-Daten abgerufen werden konnten, frühzeitig abbrechen
   }
 
-  const pokemonDetails = [];
+ 
 
   // Pokémon-Details für jedes Pokémon in der Liste abrufen
   for (const pokemon of pokemonListData.results) {
@@ -24,9 +30,10 @@ async function fetchData(amount) {
       pokemonSearchList.push(pokemonData); // Pokémon zur globalen Liste hinzufügen
     }
   }
-
   // Pokémon rendern
   renderPokemon(pokemonDetails);
+  spinner.innerHTML = ``;
+  button.style.display = 'block';
 }
 
 async function fetchPokemonList(amount) {
@@ -55,7 +62,6 @@ async function fetchPokemonDetails(pokemon) {
 
 // Zeigt die Pokémon auf der Seite an
 async function renderPokemon(pokemonList) {
-  await showLoadingSpinner();
   let charctersRef = document.getElementById("content");
   charctersRef.innerHTML = "";
 
@@ -65,7 +71,7 @@ async function renderPokemon(pokemonList) {
 
     const typesHTML = checkTypes(pokemon); // Holt die Typen
 
-    renderPokemonContent(pokemon, typesHTML); // Rendert das Pokémon
+    renderPokemonContent(pokemon, typesHTML,i); // Rendert das Pokémon
   }
 }
 
@@ -130,6 +136,7 @@ function pokeFilter() {
     let searchInputRef = document.getElementById('searchInput').value.toLowerCase();
     let emptyPageRef = document.getElementById('empty-page');
     let inputMsgRef = document.getElementById('inputMsg');
+    let button = document.getElementById('loadMore');
 
     // Filtert und zeigt die Pokémon je nach Eingabe
     if (searchInputRef.length >= 3) {
@@ -139,17 +146,21 @@ function pokeFilter() {
 
         if (searchOutput.length < 1) {
             renderEmptyState(emptyPageRef); // Zeigt "Keine Treffer"-Nachricht
+            button.style.display = 'none'; // Button ausblenden
+
         } else {
             clearEmptyState(emptyPageRef); // Zeigt die Treffer an
         }
     } else {
         clearEmptyState(emptyPageRef);
         showAllPokemon(searchInputRef);
+        
 
         if (searchInputRef.length > 0) { 
             showInputMessage(inputMsgRef); // Zeigt Eingabemeldung für weniger als 3 Buchstaben
         } else {
             clearInputMessage(inputMsgRef); // Löscht Meldung bei leerem Eingabefeld
+            button.style.display = 'block';
         }
     }
 }
@@ -196,15 +207,18 @@ function enableScroll() {
 }
 
 // Zeigt und versteckt das Overlay
-function toggleOverlay(){
+function toggleOverlay(index){
     let overlay = document.getElementById('overlay');
     overlay.classList.toggle("display-none");
-    renderOverlayTemplate();
+
+    renderOverlayTemplate(index);
+
 }
 
 // Lädt mehr Pokémon
 async function loadMorePokemon() {
-  await showLoadingSpinner();
+  let spinner = document.getElementById('loading-spinner');
+  spinnerTemplate(spinner)
 
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${pokemonSearchList.length}&limit=20`);
   if (!response.ok) {
@@ -227,6 +241,7 @@ async function loadMorePokemon() {
       }
   }
   renderMorePokemon(newPokemonDetails); // Zeigt die neuen Pokémon an
+  spinner.innerHTML = ``;
 }
 
 // Rendert neue Pokémon auf der Seite
@@ -248,23 +263,6 @@ function renderMorePokemon(newPokemonList) {
       const pokemonHTML = createPokemonHTML(pokemon, typesHTML, backgroundColor);
       charactersRef.innerHTML += pokemonHTML;
   }
-}
-
-// Zeigt einen Lade-Spinner an und versteckt den "Load More"-Button
-async function showLoadingSpinner() {
-  let button = document.getElementById('loadMore');
-  button.style.display = 'none'; // Button ausblenden
-
-  return new Promise((resolve) => {
-    let spinner = document.getElementById('loading-spinner');
-    spinnerTemplate(spinner)// Spinner HTML einfügen;
-
-    setTimeout(() => {
-      spinner.innerHTML = ''; // Entfernt den Spinner
-      resolve(); // Promise auflösen
-      button.style.display = 'block'; // Button wieder einblenden
-    }, 1900); // Nach 1 Sekunde auflösen
-  });
 }
 
 function stopPropagation(event) {

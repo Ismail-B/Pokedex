@@ -1,4 +1,4 @@
-function renderPokemonContent(pokemon, typesHTML) {
+function renderPokemonContent(pokemon, typesHTML,index) {
   let charactersRef = document.getElementById("content");
   const type1 = pokemon.types[0].type.name; // Erster Typ des Pokémon
   const color1 = getTypeColor(type1);
@@ -12,7 +12,7 @@ function renderPokemonContent(pokemon, typesHTML) {
   }
 
   charactersRef.innerHTML += `
-    <div onclick="disableScroll(), toggleOverlay()" class="main-container" style="background: ${backgroundColor}">
+    <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(${index})" class="main-container" style="background: ${backgroundColor}">
       <div class="title">
         <h4>#${pokemon.id}</h4>
         <h4>${pokemon.name}</h4>
@@ -31,15 +31,54 @@ function renderEmptyState(emptyPageRef) {
                             </div>`;
 }
 
-function renderOverlayTemplate() {
-  let overlayTemplateRef = document.getElementById('overlay');
-  overlayTemplateRef.innerHTML = `     <div class="overlay"> <div onclick="stopPropagation(event)" class="overlayTemplate">
-        <div class="overlayTitle">TITEL</div>
-        <img src="./assets/img/sadPikachu.png" alt="">
-        <div>Beschreibung</div>
-        <div>Verschiedene Stats und Reiter</div>
+function renderOverlayTemplate(index) {
+  let overlay = document.getElementById("overlay");
+  let overlayTemplate = overlay;
+  overlayTemplate.innerHTML = ``;
+  pokemonDetails[index];
+  
+  
+  
+  overlayTemplate.innerHTML = `
+  <div class="overlay d-flex justify-content-center align-items-center" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1050;">
+    <div onclick="stopPropagation(event)" class="card text-center" style="width: 24rem; background-color: white; padding: 20px; border-radius: 10px;">
+      
+      <!-- Titelbereich -->
+      <div class="card-header bg-primary text-white">
+        <h4 class="card-title">${pokemonDetails[index].name}</h4>
       </div>
-      </div>`
+      
+      <!-- Bildbereich -->
+      <img
+        src="${pokemonDetails[index].sprites.other["official-artwork"].front_default}"
+        class="card-img-top mt-3"
+        alt="Bild des Pokémon"
+        style="border-radius: 10px;"
+      />
+  
+      <!-- Abilities -->
+      <div class="card-body">
+        <div class="mb-3">
+          <h5 class="card-subtitle mb-2 text-muted">Fähigkeiten</h5>
+          <p></p>
+        </div>
+        
+        <!-- Typen -->
+        <div class="mb-3">
+          <h5 class="card-subtitle mb-2 text-muted">Typen</h5>
+          <p></p>
+        </div>
+      </div>
+  
+      <!-- Navigationsbuttons -->
+      <div class="d-flex justify-content-between mt-4">
+        <button class="btn btn-secondary" onclick="prevPokemon()">Zurück</button>
+        <button class="btn btn-secondary" onclick="nextPokemon()">Weiter</button>
+      </div>
+    </div>
+  </div>`;
+  
+
 }
 
 
@@ -77,7 +116,7 @@ function spinnerTemplate(spinner) {
 
 function createPokemonHTML(pokemon, typesHTML, backgroundColor) {
   return `
-    <div onclick="disableScroll(), toggleOverlay()" class="main-container" style="background: ${backgroundColor}">
+    <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay()" class="main-container" style="background: ${backgroundColor}">
       <div class="title">
         <h4>#${pokemon.id}</h4>
         <h4>${pokemon.name}</h4>

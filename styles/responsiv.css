@@ -1,0 +1,62 @@
+@media (max-width: 800px) {
+  .pkmn-logo {
+    width: 200px;
+    height: auto;
+  }
+  header img {
+    width: 50px;
+  }
+  header input {
+    width: 145px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pkmn-logo {
+    width: 130px;
+    height: auto;
+  }
+  header img {
+    width: 40px;
+  }
+  header input {
+    width: 145px;
+  }
+}
+
+@media (max-width: 650px) {
+  .emptyPage img {
+    width: 200px;
+    height: auto;
+    margin-left: 200px;
+  }
+  .emptyPage p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 450px) {
+  header img {
+    display: none;
+  }
+  .pkmn-logo {
+    display: block;
+    margin-left: 4px;
+  }
+  header input {
+    width: 120px;
+  }
+  header input::placeholder {
+    font-size: 13px;
+  }
+  .emptyPage p {
+    font-size: 12px;
+  }
+  .emptyPage img {
+    width: 140px;
+    height: auto;
+    margin-left: 170px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
