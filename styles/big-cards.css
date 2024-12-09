@@ -1,0 +1,75 @@
+.big-card{
+    border: 3px solid black;
+    border-radius: 8px;
+    width: 300px;
+    height: auto;
+    background-color: lightgrey;
+    margin: 16px;
+}
+
+.name-section{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    border-bottom: 2px solid black;
+    padding: 16px;
+}
+
+.img-section{
+    border-bottom: 2px solid black;
+}
+
+.img-section img{
+    transition: all .4s ease-in-out; 
+    width: 300px;
+    height: auto;
+}
+
+.img-section img:hover{
+    transform: scale(1.7);
+    cursor: pointer;
+  } 
+
+.type-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 16px;
+    height: 64px;
+    border-bottom: 2px solid black;
+}
+
+.type-section img{
+    width: 40px;
+}
+
+.stats-section{
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.first-letter-big::first-letter{
+    text-transform: uppercase;
+}
+
+.button-section{
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-section img{
+    width: 30px;
+    filter: grayscale(1) brightness(5.5) drop-shadow(0px 2px 2px black);
+}
+
+.button-section img:hover{
+    filter: brightness(3.5);
+}
+
+.mirrowed{
+    transform: rotateY(180deg);
+}

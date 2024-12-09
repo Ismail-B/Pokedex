@@ -4,21 +4,14 @@
  * @param {string} typesHTML 
  * @param {number} index 
  */
-function renderPokemonContent(pokemon, typesHTML,index) {
+function renderPokemonContent(pokemon, typesHTML, index) {
   let charactersRef = document.getElementById("content");
   const type1 = pokemon.types[0].type.name; // Erster Typ des Pokémon
   const color1 = getTypeColor(type1);
-  let backgroundColor = color1;
-
-  if (pokemon.types.length > 1) {
-    const type2 = pokemon.types[1].type.name; // Zweiter Typ
-    const color2 = getTypeColor(type2); // Farbe des zweiten Typs
-    // Farbverlauf für beide Typen
-    backgroundColor = `linear-gradient(45deg, ${color1} 20%, ${color2} 80%)`;
-  }
+  const backgroundColor = getTypes(pokemon, color1); // Nutzt den Rückgabewert von getTypes
 
   charactersRef.innerHTML += `
-    <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(),renderOverlayTemplate(${index}) " class="main-container" style="background: ${backgroundColor}">
+    <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(), renderOverlayTemplate(${index})" class="main-container" style="background: ${backgroundColor}">
       <div class="title">
         <h4>#${pokemon.id}</h4>
         <h4>${pokemon.name}</h4>
@@ -29,6 +22,7 @@ function renderPokemonContent(pokemon, typesHTML,index) {
       </div>
     </div>`;
 }
+
 /**Get empty page HTML
  * 
  * @param {string} emptyPageRef 
@@ -42,55 +36,46 @@ function renderEmptyState(emptyPageRef) {
 
 function renderOverlayTemplate(index) {
   let overlay = document.getElementById("overlay");
- 
-  // pokemonDetails[index];
-  
-  console.log("pokemonDetails:");
-  
-  console.log(pokemonDetails[index]);
-  
+  const pokemon = pokemonDetails[index];
+
+  const type1 = pokemon.types[0].type.name; // Erster Typ des Pokémon
+  const color1 = getTypeColor(type1); // Farbe des ersten Typs
+  const backgroundColor = getTypes(pokemon, color1); // Farbverlauf oder einzelne Farbe
+
   overlay.innerHTML = `
-  <div class="overlay d-flex justify-content-center align-items-center" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1050;">
-    <div onclick="stopPropagation(event)" class="card text-center" style="width: 24rem; background-color: white; padding: 20px; border-radius: 10px;">
-      
-      <!-- Titelbereich -->
-      <div class="card-header bg-primary text-white">
-        <h4 class="card-title">${pokemonDetails[index].name}</h4>
+  <div class="overlay-order">
+    <div class="big-card" onclick="stopPropagation(event)" style="background: ${backgroundColor}">
+      <div class="name-section">
+        <h4>#${pokemon.id}</h4>
+        <h4>${pokemon.name}</h4>
       </div>
-      
-      <!-- Bildbereich -->
-      <img
-        src="${pokemonDetails[index].sprites.other["official-artwork"].front_default}"
-        class="card-img-top mt-3"
-        alt="Bild des Pokémon"
-        style="border-radius: 10px;"
-      />
-  
-      <!-- Abilities -->
-      <div class="card-body">
-        <div class="mb-3">
-          <h5 class="card-subtitle mb-2 text-muted">Fähigkeiten</h5>
-          <p></p>
+      <div class="img-section">
+        <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="Picture of ${pokemon.name}">
+      </div>
+      <div class="type-section">
+        ${checkTypes(pokemon)}
+      </div>
+      <div class="stats-section">
+        <div>
+          <p>Height:</p>
+          <p>Weight:</p>
+          <p>Species:</p>
+          <p>Abilities:</p>
         </div>
-        
-        <!-- Typen -->
-        <div class="mb-3">
-          <h5 class="card-subtitle mb-2 text-muted">Typen</h5>
-          <p></p>
+        <div>
+          <p>${pokemon.height} m</p>
+          <p>${pokemon.weight} kg</p>
+          <p class="first-letter-big">${pokemon.species.name}</p>
+          <p class="first-letter-big">${pokemon.abilities[0].ability.name}</p>
         </div>
       </div>
-  
-      <!-- Navigationsbuttons -->
-      <div class="d-flex justify-content-between mt-4">
-        <button class="btn btn-secondary" onclick="prevPokemon()">Zurück</button>
-        <button class="btn btn-secondary" onclick="nextPokemon()">Weiter</button>
+      <div class="button-section">
+      <img onclick="navigateOverlay(${index}, -1)" class="mirrowed" src="./assets/icon/arrow-btn.png" alt="page before button">
+      <img onclick="navigateOverlay(${index}, 1)" src="./assets/icon/arrow-btn.png" alt="next page button">
       </div>
     </div>
-  </div>`;
-  
-
+</div>`;
 }
-
 
 function spinnerTemplate(spinner) {
   spinner.innerHTML = `<svg id="loadingSpinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">

@@ -1,11 +1,10 @@
 let amount = 20;
 let pokemonListData;
+
 const pokemonDetails = [];
-const pokemonData = [];
 // Initialisiert den Ladevorgang
 async function init() {
     await fetchData(20);
-    console.log(pokemonListData);
 }
 
 
@@ -72,8 +71,6 @@ async function fetchPokemonDetails(pokemon) {
 
 // Zeigt die Pokémon auf der Seite an
 async function renderPokemon() {
-  let charctersRef = document.getElementById("content");
-  charctersRef.innerHTML = "";
 
   // Iteriert durch die Pokémon und rendert jedes
   for (let i = 0; i < pokemonDetails.length; i++) {
@@ -91,8 +88,11 @@ function checkTypes(pokemon) {
 
   for (let j = 0; j < pokemon.types.length; j++) {
     const typeInfo = pokemon.types[j];
+    const typeName = typeInfo.type.name.charAt(0).toUpperCase() + typeInfo.type.name.slice(1); // Erster Buchstabe groß
     typesHTML += `
-        <img src="./assets/icon/typeIcon_${typeInfo.type.name}.png" alt="${typeInfo.type.name}">
+        <img src="./assets/icon/typeIcon_${typeInfo.type.name}.png" 
+             alt="${typeInfo.type.name}" 
+             title="Type: ${typeName}">
       `;
   }
 
@@ -257,27 +257,38 @@ async function loadMorePokemon() {
 // Rendert neue Pokémon auf der Seite
 function renderMorePokemon(newPokemonList) {
   let charactersRef = document.getElementById("content");
-  
-  // Zeigt jedes neue Pokémon an
   for (let i = amount; i < newPokemonList.length; i++) {
-    console.log(i);
-    console.log(newPokemonList[i].name);
-    
-      const typesHTML = checkTypes(newPokemonList[i]);
-      const type1 = newPokemonList[i].types[0].type.name;
-      const color1 = getTypeColor(type1);
-      let backgroundColor = color1;
+    const typesHTML = checkTypes(newPokemonList[i]);
+    const type1 = newPokemonList[i].types[0].type.name;
+    const color1 = getTypeColor(type1);
+    const backgroundColor = getTypes(newPokemonList[i], color1); // Nutzt den Rückgabewert von getTypes
+    const pokemonHTML = createPokemonHTML(newPokemonList[i], typesHTML, i, backgroundColor);
+    charactersRef.innerHTML += pokemonHTML;
+  }
+}
 
-      if (newPokemonList[i].types.length > 1) {
-          const type2 = newPokemonList[i].types[1].type.name;
-          const color2 = getTypeColor(type2);
-          backgroundColor = `linear-gradient(45deg, ${color1} 20%, ${color2} 80%)`;
-      }
-      const pokemonHTML = createPokemonHTML(newPokemonList[i], typesHTML,i, backgroundColor);
-      charactersRef.innerHTML += pokemonHTML;
-}
-}
 
 function stopPropagation(event) {
   event.stopPropagation();  // Verhindert, dass der Klick das übergeordnete Overlay schließt
+}
+
+function getTypes(pokemon, color1) {
+  if (pokemon.types.length > 1) {
+    const type2 = pokemon.types[1].type.name; // Zweiter Typ
+    const color2 = getTypeColor(type2); // Farbe des zweiten Typs
+    // Farbverlauf für beide Typen
+    return `linear-gradient(45deg, ${color1} 20%, ${color2} 80%)`;
+  }
+  return color1; // Falls nur ein Typ vorhanden ist
+
+}
+
+function navigateOverlay(index, direction) {
+  const totalPokemon = pokemonDetails.length; // Gesamtanzahl der Pokémon
+
+  // Berechnung des neuen Index basierend auf Richtung
+  let newIndex = (index + direction + totalPokemon) % totalPokemon;
+
+  // Render die neue Karte
+  renderOverlayTemplate(newIndex);
 }
