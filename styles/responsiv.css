@@ -130,7 +130,8 @@
 
 @media (max-width: 450px) {
   header img {
-    display: none;
+    width: 30px;
+    margin-right: 8px;
   }
   .pkmn-logo {
     display: block;
@@ -175,5 +176,11 @@
   }
   .big-card{
     width: 230px;
+  }
+}
+
+@media (max-width: 350px) {
+  header img {
+    display: none;
   }
 }
