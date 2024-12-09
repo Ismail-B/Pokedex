@@ -143,43 +143,64 @@ function getTypeColor(type) {
 
 // Filtert die Pokémon anhand der Eingabe im Suchfeld
 function pokeFilter() {
-    let searchInputRef = document.getElementById('searchInput').value.toLowerCase();
-    let emptyPageRef = document.getElementById('empty-page');
-    let inputMsgRef = document.getElementById('inputMsg');
-    let button = document.getElementById('loadMore');
+  let searchInputRef = document.getElementById('searchInput').value.toLowerCase();
+  let emptyPageRef = document.getElementById('empty-page');
+  let inputMsgRef = document.getElementById('inputMsg');
+  let button = document.getElementById('loadMore');
 
-    // Filtert und zeigt die Pokémon je nach Eingabe
-    if (searchInputRef.length >= 3) {
-        const searchOutput = filterPokemon(searchInputRef);
-        renderPokemon(searchOutput); // Zeigt gefilterte Pokémon
-        clearInputMessage(inputMsgRef);
-
-        if (searchOutput.length < 1) {
-            renderEmptyState(emptyPageRef); // Zeigt "Keine Treffer"-Nachricht
-            button.style.display = 'none'; // Button ausblenden
-
-        } else {
-            clearEmptyState(emptyPageRef); // Zeigt die Treffer an
-        }
+  // Prüfen, ob die Eingabe mindestens 3 Zeichen lang ist
+  if (searchInputRef.length >= 3) {
+    const searchOutput = filterPokemon(searchInputRef); // Gefilterte Pokémon abrufen
+    if (searchOutput.length > 0) {
+      renderFilteredPokemon(searchOutput); // Gefilterte Pokémon rendern
+      clearEmptyState(emptyPageRef); // Fehlermeldung entfernen
+      clearInputMessage(inputMsgRef); // Eingabemeldung entfernen
+      button.style.display = 'none'; // "Load More"-Button ausblenden
     } else {
-        clearEmptyState(emptyPageRef);
-        showAllPokemon(searchInputRef);
-        
-
-        if (searchInputRef.length > 0) { 
-            showInputMessage(inputMsgRef); // Zeigt Eingabemeldung für weniger als 3 Buchstaben
-        } else {
-            clearInputMessage(inputMsgRef); // Löscht Meldung bei leerem Eingabefeld
-            button.style.display = 'block';
-        }
+      renderEmptyState(emptyPageRef); // "Keine Treffer"-Meldung anzeigen
+      button.style.display = 'none';
     }
+  } else {
+    // Wenn weniger als 3 Zeichen eingegeben wurden
+    clearEmptyState(emptyPageRef); // Fehlermeldung entfernen
+    clearInputMessage(inputMsgRef); // Eingabemeldung entfernen
+    showAllPokemon(); // Alle Pokémon anzeigen
+
+    if (searchInputRef.length > 0) {
+      showInputMessage(inputMsgRef); // Eingabemeldung anzeigen
+    } else {
+      button.style.display = 'block'; // "Load More"-Button wieder anzeigen
+    }
+  }
 }
+
 
 // Filtert Pokémon basierend auf dem Namen
 function filterPokemon(searchInput) {
-    return pokemonDetails.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchInput)
-    );
+  return pokemonDetails.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchInput)
+  );
+}
+
+function renderFilteredPokemon(filteredPokemon) {
+  let charactersRef = document.getElementById("content");
+  charactersRef.innerHTML = ""; // Vorherigen Inhalt löschen
+
+  filteredPokemon.forEach((pokemon, index) => {
+    const typesHTML = checkTypes(pokemon);
+    const type1 = pokemon.types[0].type.name;
+    const color1 = getTypeColor(type1);
+    let backgroundColor = color1;
+
+    if (pokemon.types.length > 1) {
+      const type2 = pokemon.types[1].type.name;
+      const color2 = getTypeColor(type2);
+      backgroundColor = `linear-gradient(45deg, ${color1} 20%, ${color2} 80%)`;
+    }
+
+    const pokemonHTML = createPokemonHTML(pokemon, typesHTML, index, backgroundColor);
+    charactersRef.innerHTML += pokemonHTML;
+  });
 }
 
 // Löscht die Fehlermeldung bei keiner Treffer
@@ -188,21 +209,31 @@ function clearEmptyState(emptyPageRef) {
 }
 
 // Zeigt alle Pokémon an
-function showAllPokemon(searchInput) {
-    if (searchInput.length < 3) {
-        renderPokemon(pokemonDetails);
-    }
+function showAllPokemon() {
+  renderFilteredPokemon(pokemonDetails); // Alle Pokémon rendern
 }
 
-// Zeigt eine Nachricht an, dass mindestens 3 Zeichen erforderlich sind
+
+function renderEmptyState(emptyPageRef) {
+  emptyPageRef.innerHTML = `
+    <div class="emptyPage">
+      <img src="./assets/img/sadPikachu.png" alt="Picture of a sad Pikachu">
+      <p>We could not find the Pokémon you are searching for</p>
+    </div>`;
+}
+
+function clearEmptyState(emptyPageRef) {
+  emptyPageRef.innerHTML = "";
+}
+
 function showInputMessage(inputMsgRef) {
-    inputMsgRef.innerHTML = `<p>Please enter at least 3 letters.</p>`;
+  inputMsgRef.innerHTML = `<p>Please enter at least 3 letters.</p>`;
 }
 
-// Löscht die Eingabemeldung
 function clearInputMessage(inputMsgRef) {
-    inputMsgRef.innerHTML = ``;
+  inputMsgRef.innerHTML = "";
 }
+
 
 // Deaktiviert das Scrollen der Seite
 function disableScroll() {
