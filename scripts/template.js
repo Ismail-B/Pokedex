@@ -1,8 +1,8 @@
 /**
- * 
- * @param {object} pokemon 
- * @param {string} typesHTML 
- * @param {number} index 
+ *
+ * @param {object} pokemon
+ * @param {string} typesHTML
+ * @param {number} index
  */
 function renderPokemonContent(pokemon, typesHTML, index) {
   let charactersRef = document.getElementById("content");
@@ -24,8 +24,8 @@ function renderPokemonContent(pokemon, typesHTML, index) {
 }
 
 /**Get empty page HTML
- * 
- * @param {string} emptyPageRef 
+ *
+ * @param {string} emptyPageRef
  */
 function renderEmptyState(emptyPageRef) {
   emptyPageRef.innerHTML = `<div class="emptyPage">
@@ -50,7 +50,9 @@ function renderOverlayTemplate(index) {
         <h4>${pokemon.name}</h4>
       </div>
       <div class="img-section">
-        <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="Picture of ${pokemon.name}">
+        <img src="${
+          pokemon.sprites.other["official-artwork"].front_default
+        }" alt="Picture of ${pokemon.name}">
       </div>
       <div class="type-section">
         ${checkTypes(pokemon)}
@@ -109,7 +111,7 @@ function spinnerTemplate(spinner) {
 </svg>`;
 }
 
-function createPokemonHTML(pokemon, typesHTML,i, backgroundColor) {
+function createPokemonHTML(pokemon, typesHTML, i, backgroundColor) {
   return `
     <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(), renderOverlayTemplate(${i})" class="main-container" style="background: ${backgroundColor}">
       <div class="title">

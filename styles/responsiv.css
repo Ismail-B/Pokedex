@@ -35,6 +35,25 @@
   }
 }
 
+@media (max-width: 500px) {
+  .img-section img {
+    width: 160px;
+  }
+
+  .name-section {
+    padding-bottom: 3px;
+    padding-top: 8px;
+  }
+
+  .stats-section {
+    padding-bottom: 0;
+  }
+
+  .button-section {
+    padding-top: 0;
+  }
+}
+
 @media (max-width: 450px) {
   header img {
     display: none;
