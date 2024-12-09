@@ -5,6 +5,9 @@
   .stats p{
     font-size: 20px;
   }
+  .title h4{
+    margin: 8px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -23,7 +26,7 @@
     margin: 2px;
   }
   .title h4{
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -41,6 +44,9 @@
   header input {
     width: 145px;
   }
+  .types {
+    height: 25px;
+  }
 }
 
 @media (max-width: 650px) {
@@ -57,7 +63,7 @@
     margin: 0;
   }
   .title h4{
-    font-size: 12px;
+    font-size: 8px;
   }
   .types img{
     width: 21px;
@@ -88,7 +94,7 @@
     max-width: 103px;
   }
   .title h4{
-    font-size: 11px;
+    font-size: 8px;
   }
   .big-card{
     width: 300px;
@@ -135,7 +141,8 @@
     width: 18px;
   }
   .title h4{
-    font-size: 7px;
+    font-size: 8px;
+    margin-left: 0;
   }
   .big-card{
     width: 230px;
