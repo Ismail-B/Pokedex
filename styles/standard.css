@@ -1,5 +1,5 @@
 body {
-  font-family: Montserrat;
+  font-family:"Pixelify Sans", sans-serif;
   font-size: 32px;
   background-color: rgb(83, 84, 84) !important;
   margin: 0;
@@ -9,6 +9,8 @@ body {
 }
 
 main {
+  font-family:"Pixelify Sans", sans-serif;
+  font-size: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;

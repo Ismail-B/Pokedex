@@ -1,3 +1,12 @@
+@media (max-width: 1000px){
+  .big-card{
+    width: 400px;
+  }
+  .stats p{
+    font-size: 20px;
+  }
+}
+
 @media (max-width: 800px) {
   .pkmn-logo {
     width: 200px;
@@ -19,6 +28,9 @@
 }
 
 @media (max-width: 600px) {
+  .big-card{
+    width: 350px;
+  }
   .pkmn-logo {
     width: 130px;
     height: auto;
@@ -69,6 +81,24 @@
   .button-section {
     padding-top: 0;
   }
+  .overlay-order{
+    margin-top: 110px;
+  }
+  .main-container{
+    max-width: 103px;
+  }
+  .title h4{
+    font-size: 11px;
+  }
+  .big-card{
+    width: 300px;
+  }
+  .button-section img{
+    width: 20px;
+  }
+  .stats p{
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 450px) {
@@ -105,6 +135,9 @@
     width: 18px;
   }
   .title h4{
-    font-size: 9px;
+    font-size: 7px;
+  }
+  .big-card{
+    width: 230px;
   }
 }

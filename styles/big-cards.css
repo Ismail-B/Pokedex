@@ -1,6 +1,6 @@
 .big-card {
   border-radius: 12px;
-  width: 400px;
+  width: 600px;
   height: auto;
   background-color: lightgrey;
   margin: 16px;
@@ -18,6 +18,10 @@
   padding: 16px;
 }
 
+.name-section h4{
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
 .img-section {
   display: flex;
   justify-content: center;
@@ -28,6 +32,8 @@
   transition: all 0.4s ease-in-out;
   width: 300px;
   height: auto;
+  position: relative;
+  z-index: 1000;
 }
 
 .img-section img:hover {

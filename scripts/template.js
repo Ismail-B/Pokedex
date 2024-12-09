@@ -58,13 +58,13 @@ function renderOverlayTemplate(index) {
         ${checkTypes(pokemon)}
       </div>
       <div class="stats-section">
-        <div>
+        <div class="stats">
           <p>Height:</p>
           <p>Weight:</p>
           <p>Species:</p>
           <p>Abilities:</p>
         </div>
-        <div>
+        <div class="stats">
           <p>${pokemon.height} m</p>
           <p>${pokemon.weight} kg</p>
           <p class="first-letter-big">${pokemon.species.name}</p>
