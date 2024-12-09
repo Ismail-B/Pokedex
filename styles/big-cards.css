@@ -47,10 +47,11 @@
 
 .type-section img {
   width: 40px;
-  filter: drop-shadow(0px 0px 5px white);
+  filter: drop-shadow(0px 0px 3px white);
 }
 
 .stats-section {
+  font-weight: bold;
   box-shadow: 2px 2px 4px black;
   background-color: lightgrey;
   padding: 16px;

@@ -65,7 +65,7 @@ main {
 }
 
 .types img {
-  filter: drop-shadow(0px 0px 5px);
+  filter: drop-shadow(0px 0px 3px);
   width: 30px;
   height: auto;
   margin-right: 8px;
