@@ -84,7 +84,9 @@
   .img-section img {
     width: 160px;
   }
-
+  #inputMsg{
+    font-size: 12px;
+  }
   .name-section {
     padding-bottom: 3px;
     padding-top: 8px;
@@ -164,6 +166,9 @@
 }
 
 @media (max-width: 400px){
+  #inputMsg{
+    font-size: 10px;
+  }
   .main-container{
     max-width: 100px;
   }
