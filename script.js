@@ -17,7 +17,7 @@ async function fetchData() {
   pokemonListData = await fetchPokemonList(amount);
 
   if (!pokemonListData) {
-    return; // Wenn keine Pokémon-Daten abgerufen werden konnten, frühzeitig abbrechen
+    return; // Wenn keine Pokémon-Daten abgerufen werden konnten, abbrechen
   }
   await morePokeData();
 }
@@ -30,7 +30,6 @@ async function morePokeData() {
     const pokemonData = await fetchPokemonDetails(pokemon);
     if (pokemonData) {
       pokemonDetails.push(pokemonData); // Pokémon-Daten zur Liste hinzufügen
-      //pokemonSearchList.push(pokemonData); // Pokémon zur globalen Liste hinzufügen
     }
   }
 
@@ -49,7 +48,7 @@ async function fetchPokemonList(amount) {
       "Fehler beim Abrufen der Pokémon-Liste:",
       response.statusText
     );
-    return null; // Gibt null zurück, wenn ein Fehler auftritt
+    return null;
   }
   return await response.json(); // Gibt das JSON mit der Pokémon-Liste zurück
 }
@@ -59,7 +58,7 @@ async function fetchPokemonDetails(pokemon) {
     const pokemonResponse = await fetch(pokemon.url);
     if (!pokemonResponse.ok) {
       console.error(`Fehler beim Abrufen von ${pokemon.name}`);
-      return null; // Gibt null zurück, wenn ein Fehler auftritt
+      return null;
     }
     return await pokemonResponse.json(); // Gibt das Pokémon-Detail als JSON zurück
   } catch (error) {
@@ -98,7 +97,7 @@ function checkTypes(pokemon) {
   return typesHTML;
 }
 
-// Gibt die Farbe des Typs zurück
+// Farbe des Typs
 function getTypeColor(type) {
   switch (type) {
     case "grass":
@@ -162,7 +161,6 @@ function pokeFilter() {
       button.style.display = "none";
     }
   } else {
-    // Wenn weniger als 3 Zeichen eingegeben wurden
     clearEmptyState(emptyPageRef); // Fehlermeldung entfernen
     clearInputMessage(inputMsgRef); // Eingabemeldung entfernen
     showAllPokemon(); // Alle Pokémon anzeigen
@@ -285,7 +283,7 @@ function renderMorePokemon(newPokemonList) {
     const typesHTML = checkTypes(newPokemonList[i]);
     const type1 = newPokemonList[i].types[0].type.name;
     const color1 = getTypeColor(type1);
-    const backgroundColor = getTypes(newPokemonList[i], color1); // Nutzt den Rückgabewert von getTypes
+    const backgroundColor = getTypes(newPokemonList[i], color1);
     const pokemonHTML = createPokemonHTML(
       newPokemonList[i],
       typesHTML,
@@ -297,7 +295,7 @@ function renderMorePokemon(newPokemonList) {
 }
 
 function stopPropagation(event) {
-  event.stopPropagation(); // Verhindert, dass der Klick das übergeordnete Overlay schließt
+  event.stopPropagation();
 }
 
 function getTypes(pokemon, color1) {

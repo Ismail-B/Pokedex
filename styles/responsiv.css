@@ -9,6 +9,13 @@
   header input {
     width: 145px;
   }
+  .main-container{
+    max-width: 150px;
+    margin: 2px;
+  }
+  .title h4{
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -32,6 +39,16 @@
   }
   .emptyPage p {
     font-size: 16px;
+  }
+  .main-container{
+    max-width: 100px;
+    margin: 0;
+  }
+  .title h4{
+    font-size: 12px;
+  }
+  .types img{
+    width: 21px;
   }
 }
 
@@ -77,5 +94,17 @@
     margin-left: 170px;
     display: flex;
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 400px){
+  .main-container{
+    max-width: 78px;
+  }
+  .types img{
+    width: 18px;
+  }
+  .title h4{
+    font-size: 9px;
   }
 }
