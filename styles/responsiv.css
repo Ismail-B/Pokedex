@@ -26,7 +26,9 @@
     margin: 2px;
   }
   .title h4{
-    font-size: 14px;
+    font-size: 18px;
+    margin-left: 1px;
+    margin-right: 1px;
   }
 }
 
@@ -45,7 +47,7 @@
     width: 145px;
   }
   .types {
-    height: 25px;
+    height: 35px;
   }
 }
 
@@ -59,11 +61,13 @@
     font-size: 16px;
   }
   .main-container{
-    max-width: 100px;
+    max-width: 160px;
     margin: 0;
   }
   .title h4{
-    font-size: 8px;
+    font-size: 19px;
+    margin-left: 1px;
+    margin-right: 1px;
   }
   .types img{
     width: 21px;
@@ -91,10 +95,21 @@
     margin-top: 110px;
   }
   .main-container{
-    max-width: 103px;
+    max-width: 110px;
+  }
+  .title{
+    padding-left: 1px;
+    padding-left: 1px;
   }
   .title h4{
-    font-size: 8px;
+    font-size: 13px;
+    padding-left: 1px;
+    padding-right: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .types img{
+    width: 20px;
   }
   .big-card{
     width: 300px;
@@ -131,17 +146,25 @@
     display: flex;
     flex-wrap: wrap;
   }
+  #content{
+    gap: 8px;
+    padding: 4px;
+  }
+  .title h4{
+    font-size: 12px;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 400px){
   .main-container{
-    max-width: 78px;
+    max-width: 100px;
   }
   .types img{
     width: 18px;
   }
   .title h4{
-    font-size: 8px;
+    font-size: 12px;
     margin-left: 0;
   }
   .big-card{
