@@ -1,95 +1,123 @@
-@media (max-width: 1000px){
-  .big-card{
+/* ===============================
+   Responsive: Large Tablets
+================================ */
+@media (max-width: 1000px) {
+  .big-card {
     width: 400px;
   }
-  .stats p{
+
+  .stats p {
     font-size: 20px;
   }
-  .title h4{
+
+  .title h4 {
     margin: 8px;
   }
 }
 
+/* ===============================
+   Responsive: Tablets
+================================ */
 @media (max-width: 800px) {
-  header{
+  header {
     min-height: 100px;
   }
+
   .pkmn-logo {
     width: 200px;
-    height: auto;
   }
+
   header img {
     width: 50px;
   }
+
   header input {
     width: 145px;
   }
-  .main-container{
+
+  .main-container {
     max-width: 150px;
     margin: 2px;
   }
-  .title h4{
+
+  .title h4 {
     font-size: 18px;
-    margin-left: 1px;
-    margin-right: 1px;
+    margin: 0 1px;
   }
 }
 
+/* ===============================
+   Responsive: Small Tablets
+================================ */
+@media (max-width: 650px) {
+  .emptyPage img {
+    width: 200px;
+    margin-left: 200px;
+  }
+
+  .emptyPage p {
+    font-size: 16px;
+  }
+
+  .main-container {
+    max-width: 160px;
+    margin: 0;
+  }
+
+  .title h4 {
+    font-size: 19px;
+    margin: 0 1px;
+  }
+
+  .types img {
+    width: 21px;
+  }
+}
+
+/* ===============================
+   Responsive: Large Phones
+================================ */
 @media (max-width: 600px) {
-  header{
+  header {
     min-height: 80px;
   }
-  .big-card{
+
+  .big-card {
     width: 350px;
   }
+
   .pkmn-logo {
     width: 130px;
-    height: auto;
   }
+
   header img {
     width: 40px;
   }
+
   header input {
     width: 145px;
   }
+
   .types {
     height: 35px;
   }
 }
 
-@media (max-width: 650px) {
-  .emptyPage img {
-    width: 200px;
-    height: auto;
-    margin-left: 200px;
-  }
-  .emptyPage p {
-    font-size: 16px;
-  }
-  .main-container{
-    max-width: 160px;
-    margin: 0;
-  }
-  .title h4{
-    font-size: 19px;
-    margin-left: 1px;
-    margin-right: 1px;
-  }
-  .types img{
-    width: 21px;
-  }
-}
-
+/* ===============================
+   Responsive: Phones
+================================ */
 @media (max-width: 500px) {
   .img-section img {
     width: 160px;
   }
-  #inputMsg{
+
+  #inputMsg {
     font-size: 12px;
   }
+
   .name-section {
-    padding-bottom: 3px;
     padding-top: 8px;
+    padding-bottom: 3px;
   }
 
   .stats-section {
@@ -99,91 +127,112 @@
   .button-section {
     padding-top: 0;
   }
-  .overlay-order{
-    margin-top: 110px;
+
+  .overlay-order {
+    margin-top: 0px;
   }
-  .main-container{
+
+  .main-container {
     max-width: 110px;
   }
-  .title{
-    padding-left: 1px;
+
+  .title {
     padding-left: 1px;
   }
-  .title h4{
+
+  .title h4 {
     font-size: 13px;
-    padding-left: 1px;
-    padding-right: 1px;
-    margin-left: 1px;
-    margin-right: 1px;
+    padding: 0 1px;
+    margin: 0 1px;
   }
-  .types img{
+
+  .types img {
     width: 20px;
   }
-  .big-card{
+
+  .big-card {
     width: 300px;
   }
-  .button-section img{
+
+  .button-section img {
     width: 20px;
   }
-  .stats p{
+
+  .stats p {
     font-size: 14px;
   }
 }
 
+/* ===============================
+   Responsive: Small Phones
+================================ */
 @media (max-width: 450px) {
   header img {
     width: 30px;
     margin-right: 8px;
   }
+
   .pkmn-logo {
-    display: block;
     margin-left: 4px;
   }
+
   header input {
     width: 120px;
   }
+
   header input::placeholder {
     font-size: 13px;
   }
+
   .emptyPage p {
     font-size: 12px;
   }
+
   .emptyPage img {
     width: 140px;
-    height: auto;
     margin-left: 170px;
-    display: flex;
-    flex-wrap: wrap;
   }
-  #content{
+
+  #content {
     gap: 8px;
     padding: 4px;
   }
-  .title h4{
+
+  .title h4 {
     font-size: 12px;
     margin-left: 0;
   }
 }
 
-@media (max-width: 400px){
-  #inputMsg{
+/* ===============================
+   Responsive: Very Small Phones
+================================ */
+@media (max-width: 400px) {
+  #inputMsg {
     font-size: 10px;
   }
-  .main-container{
+
+  .main-container {
     max-width: 100px;
   }
-  .types img{
+
+  .types img {
     width: 18px;
   }
-  .title h4{
+
+  .title h4 {
     font-size: 12px;
     margin-left: 0;
   }
-  .big-card{
+
+  .big-card {
     width: 230px;
   }
 }
 
+/* ===============================
+   Responsive: Ultra Small Screens
+================================ */
 @media (max-width: 350px) {
   header img {
     display: none;

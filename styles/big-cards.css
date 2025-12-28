@@ -1,40 +1,61 @@
+/* ===============================
+   Overlay Card
+================================ */
 .big-card {
-  border-radius: 12px;
   width: 600px;
-  height: auto;
-  background-color: lightgrey;
   margin: 16px;
+  border-radius: 12px;
+  background-color: lightgrey;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
+/* ===============================
+   Header / Name Section
+================================ */
 .name-section {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  background-color: #780100;
-  color: rgb(229, 229, 229);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
   padding: 16px;
+
+  background-color: #780100;
+  color: rgb(229, 229, 229);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   text-transform: capitalize;
+  padding: clamp(6px, 1.6vh, 16px);
 }
 
-.name-section h4{
+.name-section h4 {
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  font-size: clamp(16px, 2.2vh, 32px);
+  margin: 0;
 }
 
+/* ===============================
+   Image Section
+================================ */
 .img-section {
   display: flex;
   justify-content: center;
-  box-shadow: 0px 0px 20px aliceblue;
+  box-shadow: 0 0 20px aliceblue;
+  flex: 0 0 auto;
+  padding: clamp(4px, 1vh, 12px) 0;
 }
 
 .img-section img {
-  transition: all 0.4s ease-in-out;
   width: 300px;
   height: auto;
   position: relative;
   z-index: 1000;
+  transition: transform 0.4s ease-in-out;
+  width: clamp(140px, 26vh, 300px);
+  max-height: clamp(110px, 28vh, 280px);
+  object-fit: contain;
 }
 
 .img-section img:hover {
@@ -42,47 +63,69 @@
   cursor: pointer;
 }
 
+/* ===============================
+   Type Icons
+================================ */
 .type-section {
-  box-shadow: 2px 2px 10px black;
-  background-color: darkgray;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding: 16px;
   height: 64px;
+  padding: 16px;
+
+  background-color: darkgray;
+  box-shadow: 2px 2px 10px black;
+  height: clamp(38px, 7vh, 64px);
+  padding: clamp(6px, 1.6vh, 16px);
+  flex: 0 0 auto;
 }
 
 .type-section img {
   width: 40px;
-  filter: drop-shadow(0px 0px 3px white);
+  filter: drop-shadow(0 0 3px white);
+  width: clamp(22px, 4.5vh, 40px);
 }
 
+/* ===============================
+   Stats Section
+================================ */
 .stats-section {
-  font-weight: bold;
-  box-shadow: 2px 2px 4px black;
-  background-color: lightgrey;
-  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 16px;
+
+  font-weight: bold;
+  background-color: lightgrey;
+  box-shadow: 2px 2px 4px black;
+  padding: clamp(6px, 1.6vh, 16px);
+  font-size: clamp(12px, 2vh, 32px);
+  min-height: 0;
 }
 
 .first-letter-big::first-letter {
   text-transform: uppercase;
 }
 
+/* ===============================
+   Navigation Buttons
+================================ */
 .button-section {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  background-color: lightgrey;
-  padding: 16px;
   display: flex;
   justify-content: space-between;
+  padding: 16px;
+
+  background-color: lightgrey;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: clamp(6px, 1.6vh, 16px);
+  flex: 0 0 auto;
 }
 
 .button-section img {
   width: 30px;
-  filter: grayscale(1) brightness(5.5) drop-shadow(0px 2px 2px black);
+  filter: grayscale(1) brightness(5.5) drop-shadow(0 2px 2px black);
+  width: clamp(18px, 4vh, 30px);
 }
 
 .button-section img:hover {
