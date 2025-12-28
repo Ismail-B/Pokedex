@@ -1,5 +1,5 @@
 body {
-  font-family:"Pixelify Sans", sans-serif;
+  font-family: "Pixelify Sans", sans-serif;
   font-size: 32px;
   background-color: rgb(83, 84, 84) !important;
   margin: 0;
@@ -9,7 +9,7 @@ body {
 }
 
 main {
-  font-family:"Pixelify Sans", sans-serif;
+  font-family: "Pixelify Sans", sans-serif;
   font-size: 32px;
   display: flex;
   flex-direction: column;
@@ -17,72 +17,121 @@ main {
   flex: 1;
 }
 
+/* =======================
+   Pokémon Grid
+======================= */
 #content {
-  display: flex; /* Aktiviert das Flexbox-Layout */
-  flex-wrap: wrap; /* Ermöglicht Zeilenumbruch */
-  gap: 16px; /* Abstand zwischen den Pokémon */
-  justify-content: space-evenly; /* Pokémon gleichmäßig verteilen */
-  padding: 16px; /* Innenabstand des Containers */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-evenly;
+  padding: 16px;
 }
 
+/* =======================
+   Pokémon Card
+======================= */
 .main-container {
-  max-width: 200px;
-  height: auto;
+  /* FIX: immer gleiche Kartenbreite */
+  width: 200px;
+  flex: 0 0 200px;
+
   border-radius: 12px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  border: none;
   margin: 16px;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  transition: all 0.5s ease-in-out;
+  transition: transform 0.4s ease-in-out;
   filter: drop-shadow(2px 4px 6px black);
+
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .main-container:hover {
   cursor: pointer;
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
+/* =======================
+   Title Bar
+======================= */
 .title {
-  padding-right: 8px;
-  padding-left: 8px;
+  padding: 6px 8px;
   background-color: rgb(121, 0, 0);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
+
+  min-height: 44px;
+  box-sizing: border-box;
+
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
 
+.title h4 {
+  margin: 0;
+  line-height: 1;
+}
+
+/* ID */
+.title h4:first-child {
+  flex: 0 0 auto;
+}
+
+/* Name */
+.title h4:last-child {
+  flex: 1 1 auto;
+  text-align: right;
+  text-transform: capitalize;
+
+  /* FIX: kein Umbruch, kein Überlauf */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =======================
+   Pokémon Image
+======================= */
+.main-container > img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  display: block;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+/* =======================
+   Types
+======================= */
 .types {
-  height: 40px;
+  height: 44px;
   background-color: rgb(49, 49, 49);
   display: flex;
   justify-content: center;
   align-items: center;
+
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
 
 .types img {
-  filter: drop-shadow(0px 0px 3px);
+  display: block;
   width: 30px;
-  height: auto;
-  margin-right: 8px;
-  margin-left: 8px;
+  height: 30px;
+  object-fit: contain;
+  margin: 0 8px;
+  filter: drop-shadow(0px 0px 3px);
 }
 
-h1 {
-  position: absolute;
-  right: 160px;
-}
-
-h4:first-letter {
-  text-transform: uppercase;
-}
-
+/* =======================
+   Header
+======================= */
 header {
   min-height: 150px;
   display: flex;
@@ -98,12 +147,10 @@ header {
   height: auto;
 }
 
-header input {
-  margin-right: 16px;
-}
-
-header h2 {
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+.headerlogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header img {
@@ -112,12 +159,13 @@ header img {
   margin-right: 16px;
 }
 
-.headerlogo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+header input {
+  margin-right: 16px;
 }
 
+/* =======================
+   Buttons / Footer
+======================= */
 .btn {
   margin-bottom: 24px;
   filter: drop-shadow(2px 4px 4px black);
@@ -126,9 +174,7 @@ header img {
 footer {
   display: flex;
   background-color: rgb(121, 0, 0);
-  justify-content: flex-start;
   flex-direction: column;
-  min-height: 30px;
 }
 
 footer img {

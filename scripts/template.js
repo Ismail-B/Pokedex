@@ -1,32 +1,31 @@
-/**
- *
- * @param {object} pokemon
- * @param {string} typesHTML
- * @param {number} index
- */
+function getPokemonImageUrl(pokemon) {
+  return (
+    pokemon?.sprites?.other?.["official-artwork"]?.front_default ||
+    pokemon?.sprites?.other?.dream_world?.front_default ||
+    pokemon?.sprites?.front_default ||
+    "./assets/img/pokeball-ladesymbol.png"
+  );
+}
+
 function renderPokemonContent(pokemon, typesHTML, index) {
   let charactersRef = document.getElementById("content");
-  const type1 = pokemon.types[0].type.name; // Erster Typ des Pokémon
+  const type1 = pokemon.types[0].type.name;
   const color1 = getTypeColor(type1);
-  const backgroundColor = getTypes(pokemon, color1); // Nutzt den Rückgabewert von getTypes
+  const backgroundColor = getTypes(pokemon, color1);
 
   charactersRef.innerHTML += `
     <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(), renderOverlayTemplate(${index})" class="main-container" style="background: ${backgroundColor}">
       <div class="title">
         <h4>#${pokemon.id}</h4>
-        <h4>${pokemon.name}</h4>
+        <h4 title="${pokemon.name}">${pokemon.name}</h4>
       </div>
-      <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="Picture of ${pokemon.name}">
+      <img src="${getPokemonImageUrl(pokemon)}" alt="Picture of ${pokemon.name}">
       <div class="types">
         ${typesHTML}
       </div>
     </div>`;
 }
 
-/**Get empty page HTML
- *
- * @param {string} emptyPageRef
- */
 function renderEmptyState(emptyPageRef) {
   emptyPageRef.innerHTML = `<div class="emptyPage">
                               <img src="./assets/img/sadPikachu.png" alt="Picture of a sad Pikachu">
@@ -36,11 +35,14 @@ function renderEmptyState(emptyPageRef) {
 
 function renderOverlayTemplate(index) {
   let overlay = document.getElementById("overlay");
-  const pokemon = pokemonDetails[index];
 
-  const type1 = pokemon.types[0].type.name; // Erster Typ des Pokémon
-  const color1 = getTypeColor(type1); // Farbe des ersten Typs
-  const backgroundColor = getTypes(pokemon, color1); // Farbverlauf oder einzelne Farbe
+  const list = window.activePokemonList || pokemonDetails;
+  const pokemon = list[index];
+  if (!pokemon) return;
+
+  const type1 = pokemon.types[0].type.name;
+  const color1 = getTypeColor(type1);
+  const backgroundColor = getTypes(pokemon, color1);
 
   overlay.innerHTML = `
   <div class="overlay-order">
@@ -50,9 +52,7 @@ function renderOverlayTemplate(index) {
         <h4>${pokemon.name}</h4>
       </div>
       <div class="img-section">
-        <img src="${
-          pokemon.sprites.other["official-artwork"].front_default
-        }" alt="Picture of ${pokemon.name}">
+        <img src="${getPokemonImageUrl(pokemon)}" alt="Picture of ${pokemon.name}">
       </div>
       <div class="type-section">
         ${checkTypes(pokemon)}
@@ -72,11 +72,11 @@ function renderOverlayTemplate(index) {
         </div>
       </div>
       <div class="button-section">
-      <img onclick="navigateOverlay(${index}, -1)" class="mirrowed" src="./assets/icon/arrow-btn.png" alt="page before button">
-      <img onclick="navigateOverlay(${index}, 1)" src="./assets/icon/arrow-btn.png" alt="next page button">
+        <img onclick="navigateOverlay(${index}, -1)" class="mirrowed" src="./assets/icon/arrow-btn.png" alt="page before button">
+        <img onclick="navigateOverlay(${index}, 1)" src="./assets/icon/arrow-btn.png" alt="next page button">
       </div>
     </div>
-</div>`;
+  </div>`;
 }
 
 function spinnerTemplate(spinner) {
@@ -116,9 +116,9 @@ function createPokemonHTML(pokemon, typesHTML, i, backgroundColor) {
     <div id="pokemon${pokemon.id}" onclick="disableScroll(), toggleOverlay(), renderOverlayTemplate(${i})" class="main-container" style="background: ${backgroundColor}">
       <div class="title">
         <h4>#${pokemon.id}</h4>
-        <h4>${pokemon.name}</h4>
+        <h4 title="${pokemon.name}">${pokemon.name}</h4>
       </div>
-      <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="Picture of ${pokemon.name}">
+      <img src="${getPokemonImageUrl(pokemon)}" alt="Picture of ${pokemon.name}">
       <div class="types">
         ${typesHTML}
       </div>

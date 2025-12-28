@@ -16,6 +16,7 @@
   justify-content: flex-start;
   gap: 8px;
   padding: 16px;
+  text-transform: capitalize;
 }
 
 .name-section h4{
